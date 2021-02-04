@@ -26,7 +26,7 @@ export default ({
       <path  style={{
         fill:'red',
         right:5,
-      }} d={`M ${targetX+2.5},${targetY-10} l-5,0 l0,20, l5,0 l,0-20 Z`}
+      }} d={`M${targetX+2.5},${targetY-10} l-5,0 l0,20, l5,0 l0,-20 Z`}
       />
     </g>
   );

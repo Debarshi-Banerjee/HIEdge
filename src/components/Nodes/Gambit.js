@@ -15,7 +15,7 @@ const customNodeStyles = {
 const handelStyle = {
   border: "unset",
   borderRadius: "unset",
-  background: "red",
+  background: "blue",
   height: 20,
   width: 5
 };
@@ -38,7 +38,6 @@ const Gambit = memo(({ data }) => {
     <div style={customNodeStyles}>
       <div>
         <Handle type="target" position="top" style={{ top:-20,...handelStyle }}>
-          {connectionNode({top:-0})}
         </Handle>
       </div>
       <div>
@@ -51,7 +50,6 @@ const Gambit = memo(({ data }) => {
           id="o_1"
           style={{ ...handelStyle, left: `${50 - MAX_GAP}%`,bottom:-20 }}
         >
-          {connectionNode({})}
         </Handle>
         >
         <Handle
@@ -60,7 +58,6 @@ const Gambit = memo(({ data }) => {
           id="o_2"
           style={{ ...handelStyle, left: `${50 + MAX_GAP}%`,bottom:-20 }}
         >
-          {connectionNode({})}
         </Handle>
       </div>
     </div>

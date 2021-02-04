@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
-import ReactFlow, { removeElements, addEdge } from "react-flow-renderer";
+import ReactFlow, { removeElements,updateEdge, addEdge } from "react-flow-renderer";
 import Gambit from "./Nodes/Gambit";
-import HIEdge from "./Edges/HIEdge"
-import HIEdgeConnection from "./Connections/HIEdgeConnection"
+import HIEdge from "./Edges/HIEdge";
+import HIEdgeConnection from "./Connections/HIEdgeConnection";
 import { converter } from "./Utils/business/dataFlowConverter";
 
 const style = {
@@ -15,7 +15,7 @@ const nodeTypes = {
 };
 
 const edgeTypes = {
-  HIEdge:HIEdge,
+  HIEdge: HIEdge
 };
 
 export default props => {
@@ -31,24 +31,26 @@ export default props => {
     []
   );
   const onConnect = useCallback(params => {
-    console.log(params)
-      return setElements(els => {
-      console.log(els)
-      return addEdge(
-        { ...params, animated: true, style: { stroke: "#fff" } },
-        els
-      );
-    }),
-      [];
+    console.log(params);
+    return (
+      setElements(els => {
+        console.log(els);
+        return addEdge({ ...params, type: "HIEdge" }, els);
+      }),
+      []
+    );
   });
+
+  const onEdgeUpdate = (oldEdge, newConnection) =>
+    setElements(els => updateEdge(oldEdge, newConnection, els));
 
   return (
     <div style={{ height: "100vh", ...style }}>
       <ReactFlow
         elements={elements}
-        defaultZoom={1}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
+        onEdgeUpdate={onEdgeUpdate}
         onElementsRemove={onElementsRemove}
         onConnect={onConnect}
         connectionLineComponent={HIEdgeConnection}
