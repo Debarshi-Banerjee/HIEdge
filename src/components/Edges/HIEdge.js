@@ -1,5 +1,5 @@
 import React from "react";
-import { getHIEdgePath } from "./Utils/HiEdgePath";
+import { getHIEdgePath } from "./Utils/HIEdgePath";
 
 export default function HIEdge({
   id,

@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import ReactFlow, { removeElements, addEdge } from "react-flow-renderer";
 import Gambit from "./Nodes/Gambit";
 import HIEdge from "./Edges/HIEdge"
+import HIEdgeConnection from "./Connections/HIEdgeConnection"
 import { converter } from "./Utils/business/dataFlowConverter";
 
 const style = {
@@ -50,6 +51,7 @@ export default props => {
         edgeTypes={edgeTypes}
         onElementsRemove={onElementsRemove}
         onConnect={onConnect}
+        connectionLineComponent={HIEdgeConnection}
       />
     </div>
   );
