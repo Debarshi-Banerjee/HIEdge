@@ -6,7 +6,6 @@ const sampleData = {
     1: {
       name: "FirstGambit",
       position: { x: 300, y: 200 },
-      outputs: ["o_2", "o_2"],
       branches: [
         {
           branch_id: "b_1",
@@ -27,7 +26,12 @@ const sampleData = {
 				{
           branch_id: "b_3",
           connect_gid: "g_4",
-          output: "o_1"
+          output: "o_3"
+        },
+        {
+          branch_id: "b_5",
+          connect_gid: "g_6",
+          output: "o_5"
         }
 			]
     },
@@ -37,7 +41,7 @@ const sampleData = {
       branches: [{
 				branch_id: "b_4",
 				connect_gid: "g_5",
-				output: "o_1"
+				output: "o_4"
 			}]
 		},
 		4: {

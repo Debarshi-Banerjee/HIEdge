@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
-import ReactFlow, { removeElements,updateEdge, addEdge } from "react-flow-renderer";
+import ReactFlow, { removeElements, updateEdge, addEdge } from "react-flow-renderer";
 import Gambit from "./Nodes/Gambit";
 import HIEdge from "./Edges/HIEdge";
 import HIEdgeConnection from "./Connections/HIEdgeConnection";
 import { converter } from "./Utils/business/dataFlowConverter";
 
 const style = {
-  background: "#e2e4e6",
+  background: "#d6dadc",
   width: "100%"
 };
 
@@ -31,14 +31,22 @@ export default props => {
     []
   );
   const onConnect = useCallback(params => {
-    console.log(params);
     return (
       setElements(els => {
-        console.log(els);
         return addEdge({ ...params, type: "HIEdge" }, els);
       }),
       []
     );
+  });
+
+  const onConnectStart = useCallback((event, params) => {
+    const { nodeId, handleType, handleId } = params
+    setElements(els => {
+      if (handleType === 'source') {
+        return els.filter(({ sourceHandle, source }) => { return !(source === nodeId && sourceHandle === handleId) });
+      }
+      return [...els]
+    })
   });
 
   const onEdgeUpdate = (oldEdge, newConnection) =>
@@ -50,6 +58,7 @@ export default props => {
         elements={elements}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
+        onConnectStart={onConnectStart}
         onEdgeUpdate={onEdgeUpdate}
         onElementsRemove={onElementsRemove}
         onConnect={onConnect}

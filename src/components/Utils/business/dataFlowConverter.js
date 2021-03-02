@@ -3,9 +3,11 @@ export const converter = data => {
 
   const branchEdges = [];
   const gambitNodes = Object.keys(gambits).map(gambitId => {
-    const { position, name, branches, outputs } = gambits[gambitId];
+    const { position, name, branches } = gambits[gambitId];
+    const outputs=[];
     branches.map(branch => {
       const { branch_id, connect_gid, output } = branch;
+      outputs.push(output)
       branchEdges.push({
         id: branch_id,
         source: `g_${gambitId}`,
